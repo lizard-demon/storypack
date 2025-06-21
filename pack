@@ -1,5 +1,9 @@
 #!/usr/bin/env lua
-package.path = "./repo/?.lua;./repo/?/init.lua;./repo/?/?.lua;./repo/?/?/?.lua;" .. package.path
+
+for dir in io.popen("find repo -type d"):lines() do
+   package.path = dir .. "/init.lua;" .. package.path
+end
+
 --------------------------------------------------------------------------------
 -- pack - pack stories --
 --
@@ -7,7 +11,6 @@ package.path = "./repo/?.lua;./repo/?/init.lua;./repo/?/?.lua;./repo/?/?/?.lua;"
 --  source based package manager
 --  for stories - written in lua.
 --
-
 library = "<path>"   -- Story Install Location
 
 --------------------------------------------------------------------------------
@@ -32,7 +35,7 @@ require("ao3.tgweaver.packstreet")  -- Single Story
 --------------------------------------------------------------------------------
 -- Packers -> require("<packer>") { ... }
 
-require("ao3") {
-  title = "Title",
-  url = "...",
-}
+--require("ao3") {
+--  title = "Title",
+--  url = "...",
+--}
