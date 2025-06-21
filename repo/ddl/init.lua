@@ -1,21 +1,13 @@
-local http, ltn12 = require("socket.http"), require("ltn12")
-local M = {}
+-- ddl - direct download
 
-function M.handle(story)
-  if not story.url:match("%.epub$") then return end
-  local statef = "." .. story.file .. ".state"
-  local hdr = io.open(statef, "r")
-  local h = hdr and { ["If-Modified-Since"] = hdr:read("*a") } or {}
-  if hdr then hdr:close() end
+print("Works")
 
-  local body, t = {}, ltn12.sink.table{}
-  local _, code, res = http.request{url=story.url, headers=h, sink=t}
-  if code == 304 then return end
+local http = require("socket.http")
 
-  io.open(story.file, "w"):write(table.concat(t)):close()
-  if res["last-modified"] then io.open(statef, "w"):write(res["last-modified"]):close() end
-  print("Updated:", story.title)
+return function(t)
+  local body = assert(http.request(t.url))
+  local f = assert(io.open(t.path, "w"))
+  f:write(body)
+  f:close()
 end
-
-return M
 
