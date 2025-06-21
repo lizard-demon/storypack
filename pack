@@ -1,0 +1,38 @@
+#!/usr/bin/env lua
+package.path = "./repo/?.lua;./repo/?/init.lua;./repo/?/?.lua;./repo/?/?/?.lua;" .. package.path
+--------------------------------------------------------------------------------
+-- pack - pack stories --
+--
+--  A declaritive rolling release
+--  source based package manager
+--  for stories - written in lua.
+--
+
+library = "<path>"   -- Story Install Location
+
+--------------------------------------------------------------------------------
+-- Packs -> require("<packer>.<author>.<story>")
+
+require("nop")               -- NOP Story Packer
+require("nop.cannon")        -- All Cannon
+require("nop.cannon.main")   -- Main Stories
+require("nop.cannon.main.1") -- Main Story 1
+require("nop.cannon.main.2") -- Main Story 2
+require("nop.cannon.arxur")  -- Side Story
+
+require("nop.heroman3003")                         -- All Heroman Stories
+require("nop.heroman3003.waywardodysee")           -- Heroman Story
+require("nop.heroman3003.takingcareofbrokenbirds") -- Heroman Story 
+
+require("ao3")                      -- AO3 Story Packer
+require("ao3.tgweaver")             -- All TGWeaver Stories
+require("ao3.tgweaver.packstreet")  -- Single Story
+-- etc... --
+
+--------------------------------------------------------------------------------
+-- Packers -> require("<packer>") { ... }
+
+require("ao3") {
+  title = "Title",
+  url = "...",
+}
