@@ -1,6 +1,6 @@
 #!/usr/bin/env lua
 
-for dir in io.popen("find repo -type d"):lines() do
+for dir in io.popen("find packages -type d"):lines() do
    package.path = dir .. "/?.lua;" .. dir .. "/?/init.lua;" .. package.path
 end
 
@@ -36,10 +36,16 @@ stories = os.getenv("HOME") .. "/.Library"
 --------------------------------------------------------------------------------
 -- Packers -> require("<packer>") { ... }
 
--- Direct Download, No Update Checks
+-- DDL, Download File
 require("ddl") {
   url = "https://archiveofourown.org/downloads/12141837/Pack_Street.epub",
   path = stories .. "/Pack_Street.epub",
+}
+
+-- Sync, Sync File
+require("sync") {
+  url = "https://archiveofourown.org/downloads/23265703/Serval_Sheep_Sophomore.epub",
+  path = stories .. "/Serval_Sheep_Sophomore.epub",
 }
 
 --
