@@ -1,7 +1,5 @@
 -- ddl - direct download
 
-print("Works")
-
 local http = require("socket.http")
 
 return function(t)

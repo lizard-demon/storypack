@@ -48,6 +48,12 @@ require("sync") {
   path = stories .. "/Serval_Sheep_Sophomore.epub",
 }
 
+-- AO3, Sync to AO3
+require("ao3") {
+  url = "https://archiveofourown.org/works/25378225/chapters/61757572",
+  dir = stories,
+}
+
 --
 -- Packers as a standard use hidden sidecar files
 -- /example/file.txt -> /example/.file.txt.<ext>

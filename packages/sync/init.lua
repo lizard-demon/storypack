@@ -1,7 +1,9 @@
-return function (t)
-  local http = require("socket.http")
-  local ltn12 = require("ltn12")
+-- sync - download on remote update
 
+local http = require("socket.http")
+local ltn12 = require("ltn12")
+
+return function (t)
   local etagfile = t.path:match("(.*/)") .. "." .. t.path:match("([^/]+)$") .. ".etag"
 
   local etag = io.open(etagfile, "r")
